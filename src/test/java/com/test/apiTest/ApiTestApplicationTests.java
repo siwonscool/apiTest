@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ApiTestApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void 오늘의집_인기상품목록_불러오기() {
+		//given
+		//when
+		//then
 	}
-
 }
