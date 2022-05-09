@@ -1,5 +1,8 @@
 package com.test.apiTest;
 
+import com.test.apiTest.service.CallApiService;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,36 +22,17 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class ApiTestApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiTestApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(ApiTestApplication.class, args);
 
-		for (int i = 0; i < 10; i++) {
-			log.info(i+"");
-			log.debug(i+"");
-			log.error(i+"");
-			log.warn(i+"");
-		}
-	}
+        Map map = new HashMap();
 
-	public Object getItemsFromTodayHouseApi(String regId, String time, String pageNum) throws UnsupportedEncodingException {
-
-		String url = "https://ohou.se/store/category.json?v=2&order=popular&page="+pageNum+"&per=24";
-		String serviceKey = "서비스키";
-		String decodeServiceKey = URLDecoder.decode(serviceKey, "UTF-8");
-
-		RestTemplate restTemplate = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));    //Response Header to UTF-8
-
-		UriComponents builder = UriComponentsBuilder.fromHttpUrl(url)
-				.queryParam("serviceKey", decodeServiceKey)
-				.queryParam("regId", regId)
-				.queryParam("tmFc", time)
-				.queryParam("_type", "json")
-				.build(false);    //자동으로 encode해주는 것을 막기 위해 false
-
-		Object response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<String>(headers), String.class);
-		return response;
-	}
+        try {
+            map = (HashMap) CallApiService.getPopularItemsFromTodayHouseApi("1");
+            map.get("selected_products");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
