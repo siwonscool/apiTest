@@ -2,10 +2,9 @@ package com.test.apiTest.service;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
