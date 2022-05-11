@@ -1,13 +1,16 @@
 package com.test.apiTest.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import lombok.ToString;
 
-@Getter
+@Data
 @NoArgsConstructor
+@ToString
 public class PopularItemDto {
     private Integer id;
     private Boolean is_scrap;
@@ -57,4 +60,6 @@ public class PopularItemDto {
     private Integer view_count;
     private Integer week_rank;
     private Integer wish_count;
+
+
 }
