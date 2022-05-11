@@ -15,6 +15,10 @@ public class ApiTestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiTestApplication.class, args);
-
+        try {
+            CallApiService.getPopularItemsFromTodayHouseApi("1");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }
